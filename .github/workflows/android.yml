@@ -1,4 +1,3 @@
-
 name: Build FREE IQ VPN APK
 
 on:
@@ -15,8 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract new project
-        run: unzip -o FREE-IQ-VPN-source.zip -d .
+      - name: Extract updated project
+        run: unzip -o FREE-IQ-VPN-source-v2.zip -d .
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -28,6 +27,13 @@ jobs:
 
       - name: Get packages
         run: flutter pub get
+
+      - name: Generate Android launcher icon
+        run: dart run flutter_launcher_icons
+
+      - name: Set Android app display name
+        run: |
+          sed -i 's/android:label="free_iq_vpn"/android:label="FREE IQ VPN"/' android/app/src/main/AndroidManifest.xml
 
       - name: Build APK
         run: flutter build apk --release
