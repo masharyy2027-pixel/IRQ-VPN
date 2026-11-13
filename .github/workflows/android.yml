@@ -1,5 +1,5 @@
 
-name: Build IRQ VPN APK
+name: Build FREE IQ VPN APK
 
 on:
   workflow_dispatch:
@@ -15,8 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract project
-        run: unzip -o IRQ-VPN-source.zip -d .
+      - name: Extract new project
+        run: unzip -o FREE-IQ-VPN-source.zip -d .
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -24,7 +24,7 @@ jobs:
           channel: stable
 
       - name: Generate Android files
-        run: flutter create . --platforms=android --project-name=irq_vpn
+        run: flutter create . --platforms=android --project-name=free_iq_vpn
 
       - name: Get packages
         run: flutter pub get
@@ -35,5 +35,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: IRQ-VPN-APK
+          name: FREE-IQ-VPN-APK
           path: build/app/outputs/flutter-apk/app-release.apk
